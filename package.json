@@ -1,0 +1,23 @@
+{
+  "name": "social-network",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/justpuzey/social-network.git"
+  },
+  "author": "Justin Puzey",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/justpuzey/social-network/issues"
+  },
+  "homepage": "https://github.com/justpuzey/social-network#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.12.14"
+  }
+}
