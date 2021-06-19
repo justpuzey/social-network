@@ -40,7 +40,6 @@ const userController = {
 
   // Create User
   createUser({ body }, res) {
-    // console.log("BODY OBJECT", body)
     User.create(body)
       .then(dbUserData => res.json(dbUserData))
       .catch(err => {
