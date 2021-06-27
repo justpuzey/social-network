@@ -90,13 +90,31 @@ const ThoughtController = {
   },
 
   // Remove Reaction
+  // removeReaction({ params }, res) {
+  //   Thought.findOneAndUpdate(
+  //     { _id: params.thoughtId },
+  //     { $pull: { reactions: { reactionId: params.reactionId } } },
+  //     { new: true }
+  //   )
+  //     .then(dbUserData => res.json(dbUserData))
+  //     .catch(err => res.json(err));
+  // }
+
   removeReaction({ params }, res) {
-    Thought.findOneAndUpdate(
-      { _id: params.thoughtId },
-      { $pull: { reactions: { reactionId: params.reactionId } } },
-      { new: true }
-    )
-      .then(dbUserData => res.json(dbUserData))
+    Thought.findOneAndDelete({ _id: params.thoughtId })
+      .then(deletedreaction => {
+        if (!deletedreaction) {
+          return res.status(404).json({ message: 'No reaction with this id!' });
+        }
+        return User.findOneAndUpdate(
+          { _id: params.thoughtId },
+          { $pull: { reactionId: params.reactionId } },
+          { new: true }
+        );
+      })
+      .then(dbUserData => {
+        res.json(dbUserData);
+      })
       .catch(err => res.json(err));
   }
 };
